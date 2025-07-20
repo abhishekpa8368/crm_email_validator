@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CRM Email Validator</title>
+ <style>
+  body {
+    font-family: sans-serif;
+    line-height: 1.8; /* Adjusted line height for general body text */
+    color: #333;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    font-size: 20px; /* Base font size for body elements not explicitly styled */
+  }
+
+  h1 {
+    color: #0056b3;
+    font-weight: bold;
+    margin-top: 30px;
+    font-size: 44px; /* Increased H1 size for maximum prominence */
+  }
+
+  h2 {
+    color: #0056b3;
+    font-weight: bold;
+    margin-top: 30px;
+    font-size: 36px; /* Increased H2 size */
+  }
+
+  h3 {
+    color: #0056b3;
+    font-weight: bold;
+    margin-top: 25px; /* Slightly adjusted margin for H3 */
+    font-size: 30px; /* Increased H3 size */
+  }
+
+  /* General rule for paragraphs and list items - will be overridden by inline styles for specific elements */
+  p, li {
+    font-size: 20px; /* Base font size for P and LI, can be overridden by specific inline styles below */
+    line-height: 1.8; /* Adjusted line height for better readability with larger text */
+  }
+
+  /* Specific styling for the initial descriptive paragraphs */
+  .intro-text {
+      font-size: 22px; /* Larger size for introductory descriptive text */
+      font-weight: bold;
+      line-height: 1.8;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 15px;
+  }
+
+  ul li {
+    margin-bottom: 16px;
+    padding-left: 30px;
+    position: relative;
+    font-size: 22px; /* Increased font size for general list items */
+  }
+
+  ul li::before {
+    content: '✅';
+    position: absolute;
+    left: 0;
+    color: green;
+  }
+
+  .feature-list li::before {
+    content: '✅';
+  }
+
+  .config-steps ol {
+    list-style-type: decimal;
+    padding-left: 25px;
+  }
+
+  .config-steps img,
+  .visual-indicators img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 25px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  .visual-indicators h3 {
+    margin-top: 25px; /* Aligned with other H3 margin */
+  }
+
+  .indicator-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 26px; /* Significantly increased for indicator items */
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+  .indicator-item span {
+    font-size: 1.8em; /* Kept relative size */
+    margin-right: 10px;
+  }
+
+  .green-check::before {
+    content: '🟢';
+  }
+
+  .red-cross::before {
+    content: '🔴';
+  }
+
+  .validate-button::before {
+    content: '📤';
+  }
+
+  .how-it-works ul {
+    list-style-type: disc;
+    padding-left: 25px;
+    margin-top: 15px;
+  }
+
+  .help {
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    padding-top: 25px;
+  }
+
+  .help p {
+    margin: 10px 0;
+    font-size: 22px; /* Increased font size for help section paragraphs */
+  }
+
+  a {
+    color: #0056b3;
+    font-weight: bold;
+    font-size: 22px; /* Increased link font size */
+  }
+</style>
+
+</head>
+<body>
+
+  <h1>CRM Email Validator</h1>
+  <p class="intro-text"><strong>Validate CRM Emails with DNS & SMTP Checks</strong></p>
+  <p class="intro-text"><strong>This module adds intelligent email validation to Odoo CRM leads. It helps reduce bounce rates and improves lead quality by validating email syntax, domain records, and SMTP server response.</strong></p>
+
+  <h2>✨ Key Features</h2>
+  <ul class="feature-list">
+    <li>Email Syntax Validation (RFC-compliant)</li>
+    <li>DNS Record Validation (MX lookup)</li>
+    <li>SMTP-Level Verification</li>
+    <li>Lead form indicators for valid/invalid emails</li>
+    <li>Smart 'Validate Email' button appears when DNS & syntax checks pass</li>
+    <li>Bulk Email Validation for CRM Leads</li>
+    <li>Filters: Valid, Invalid, and Not Yet Verified Emails</li>
+    <li>Fully configurable in Technical Settings</li>
+    <li>Supports library-based DNS or external API (Coming Soon)</li>
+  </ul>
+
+  <h2>⚙ Configuration via Settings</h2>
+  <div class="config-steps">
+    <p style="font-size: 24px; font-weight: bold;"><strong>Navigate to: Settings → Technical → Email → Outgoing Mail Servers</strong></p>
+    <br>
+    <img src="/crm_email_validators/static/images/pic10.png" alt="Outgoing Mail Servers Configuration">
+    <br>
+    <p style="font-size: 24px; font-weight: bold;"><strong>Fill The Details Like This:</strong></p>
+    <br>
+    <img src="/crm_email_validators/static/images/pic12.png" alt="Filled Outgoing Mail Servers Details"><br>
+    <p style="font-size: 24px; font-weight: bold;"><strong>Navigate to: Settings → Email Validation</strong></p><br>
+    <img src="/crm_email_validators/static/images/pic13.png" alt="Email Validation Settings"><br>
+    <ul>
+      <li>Check Email Syntax – Validate email format</li>
+      <li>Check DNS – Lookup MX records of the domain</li>
+      <li>Check SMTP – Connect to the mail server to confirm mailbox existence</li>
+      <li>API Key – Support for upcoming third-party API integrations</li>
+    </ul>
+  </div>
+
+  <h2>📌 Visual Indicators in CRM Leads</h2>
+  <div class="visual-indicators">
+    <div class="indicator-item">
+      <span class="green-check">🟢</span> Green Check – Email is valid
+    </div>
+    <br>
+    <img src="/crm_email_validators/static/images/pic14.png" alt="Valid Email Indicator">
+    <br>
+    <p style="font-size: 22px; font-weight: bold;"><strong>This icon appears when the email is verified successfully.</strong></p>
+
+    <div class="indicator-item">
+      <span class="red-cross">🔴</span> Red Cross – Email is invalid or unverified
+    </div>
+    <br>
+    <img src="/crm_email_validators/static/images/pic15.png" alt="Invalid Email Indicator"><br>
+    <p style="font-size: 22px; font-weight: bold;"><strong>This icon indicates a failed or unverified email.</strong></p>
+
+    <div class="indicator-item">
+      <span class="validate-button">📤</span> Validate Email Button – Only shown when email is ready for SMTP check
+    </div>
+    <br>
+    <img src="/crm_email_validators/static/images/pic16.png" alt="Validate Email Button">
+    <br>
+    <p style="font-size: 22px; font-weight: bold;"><strong>This button appears once syntax and DNS validations pass.</strong></p>
+  </div>
+
+  <h2>🔍 Smart CRM Filters</h2>
+  <ul>
+    <li>Valid Email</li>
+    <li>Invalid Email</li>
+    <li>Email Not Verified</li>
+  </ul>
+
+  <h2>💡 How It Works</h2>
+  <div class="how-it-works">
+    <ul>
+      <li>Email is validated using syntax rules</li>
+      <li>DNS MX records are resolved</li>
+      <li>SMTP handshake confirms mailbox existence</li>
+      <li>Results are saved in the lead and filters are updated</li>
+    </ul>
+  </div>
+
+  <div class="help">
+    <h2>📞 Need Help?</h2>
+    <p>For questions or demo requests:</p>
+    <p>Email us at: <a href="mailto:support@technians.com">support@technians.com</a></p>
+  </div>
+
+</body>
+</html>

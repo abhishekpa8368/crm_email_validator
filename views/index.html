@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CRM Email Validator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f4f4f4;
+  }
+  h1, h2 {
+    color: #333;
+  }
+  .section {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  .feature-list {
+    columns: 2;
+  }
+  .code-box {
+    background: #eef;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<h1>CRM Email Validator</h1>
+<h2>Validate CRM Emails with DNS & SMTP Checks</h2>
+<p>This module adds intelligent email validation to Odoo CRM leads. It helps reduce bounce rates and improves lead quality by validating email syntax, domain records, and SMTP server response.</p>
+
+<h2>✨ Key Features</h2>
+<div class="feature-list">
+  <ul>
+    <li><strong>Email Syntax Validation</strong> (RFC compliant)</li>
+    <li><strong>DNS Record Validation</strong> (MX lookup)</li>
+    <li><strong>SMTP Level Verification</strong></li>
+    <li>Lead form indicators for valid/invalid emails</li>
+    <li>Smart 'Validate Email' button appears when DNS & syntax checks pass</li>
+    <li>Bulk Email Validation for CRM Leads</li>
+    <li>Filters: Valid, Invalid, and Not Yet Verified Emails</li>
+    <li>Fully configurable in Technical Settings</li>
+    <li>Supports library based DNS or external API (Coming Soon)</li>
+  </ul>
+</div>
+
+<h2>⚙ Configuration via Settings</h2>
+<h3>Navigate to:</h3>
+<ol>
+  <li>Settings → Technical → Email → Outgoing Mail Servers</li>
+</ol>
+<h3>Fill The Details Like this:</h3>
+<div class="code-box">
+  <p>Server Name: smtp</p>
+  <p>Priority: 1</p>
+  <p>From Filtering: abhi@gmail.com</p>
+</div>
+
+<h3>Mail Server Settings</h3>
+<ul>
+  <li>Authenticate with: Username</li>
+  <li>Connect to your server through your usual username</li>
+  <li>SSL Certificate: (Optional, based on provider)</li>
+  <li>Gmail OAuth Authentication (if applicable)</li>
+  <li>Connection Encryption: TLS (STARTTLS) or None</li>
+  <li>SMTP Server: bh-in-11.webhostbox.net</li>
+  <li>SMTP Port: 465</li>
+</ul>
+<h4>Screenshot 1: CRM Lead Email Validation Page</h4>
+<img src="https://i.imgur.com/68625ff6a680a3939c3a3409.png" alt="CRM Lead Email Validation Page"/>
+
+<h2>Navigate to:</h2>
+<ol>
+  <li>Settings - Email Validation</li>
+</ol>
+<h3>Validation Settings</h3>
+<ul>
+  <li><strong>Select Validation Method</strong></li>
+  <li><strong>Library DNS Settings</strong></li>
+  <li>Check Email Syntax</li>
+  <li>Enable DNS record checks</li>
+  <li>Check SMTP server existence</li>
+  <li>Support for upcoming third-party API integrations</li>
+</ul>
+
+<h2>Screenshot 2: Email Syntax Error</h2>
+<img src="https://i.imgur.com/68625ff64516aead27c96444.png" alt="Email Syntax Error"/>
+
+<h2>Screenshot 3: Validation Result with Green Checkmark</h2>
+<img src="https://i.imgur.com/68625ff74516aead27c96446.png" alt="Validation Success"/>
+
+<h2>How It Works</h2>
+<ol>
+  <li>Email is validated using syntax rules</li>
+  <li>DNS MX records are resolved</li>
+  <li>SMTP handshake confirms mailbox existence</li>
+  <li>Results are saved in the lead and filters are updated</li>
+</ol>
+
+<h2>Screenshot 4: CRM Lead with Validation Status</h2>
+<img src="https://i.imgur.com/68625ff7a680a3939c3a340b.png" alt="CRM Lead Validation Status"/>
+
+<h2>Need Help?</h2>
+<p>For questions or demo requests, contact: <a href="mailto:support@technians.com">support@technians.com</a></p>
+
+</body>
+</html>

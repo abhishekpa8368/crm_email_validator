@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="email_validation_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">email.validation.res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="45"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block icon d-none d-md-block" data-string="Email Validation"
+                     string="Email Validation"
+                     data-key="email_validators"
+                     style="background: url('/email_validators/static/description/icon.png') no-repeat center; background-size:contain;">
+
+                    <!-- Title with light blue background and bold -->
+                    <h2 style="font-weight: bold; background-color: #d9ecff; padding: 8px; border-radius: 4px;">
+                        Email Validation Settings
+                    </h2>
+
+                    <!-- Email Verification Method Field (Bold) -->
+                    <div class="row mt16 o_settings_container" style="font-weight: bold;">
+                        <label for="email_verification_method" string="Select Validation Method"/>
+                        <div class="col-lg-6 col-12 o_setting_box">
+                            <field name="email_verification_method"/>
+                        </div>
+                    </div>
+
+                    <!-- Library DNS Settings (Visible when Library method is selected) -->
+                    <div class="row mt16 o_settings_container"
+                         attrs="{'invisible': [('email_verification_method', '!=', 'library')]}">
+                        <h3 style="font-weight: bold; background-color: #f0f8ff; padding: 6px; border-radius: 4px;">
+                            Library DNS Settings
+                        </h3>
+
+
+                        <!-- Left Pane for Boolean Fields -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="d-flex align-items-center mb-2" style="font-weight: bold;">
+                                <field name="check_email_syntax" class="me-2"/>
+                                <span>Check Email Syntax</span>
+                            </div>
+                            <div class="o_description" style="color: #6c757d;">
+                                Enable this option to validate the syntax of the email address.
+                            </div>
+
+                            <div class="d-flex align-items-center mb-2" style="font-weight: bold;">
+                                <field name="check_dns" class="me-2"/>
+                                <span>Check DNS</span>
+                            </div>
+                            <div class="o_description" style="color: #6c757d;">
+                                Enable this option to check the DNS records for the email domain.
+                            </div>
+
+                            <div class="d-flex align-items-center mb-2" style="font-weight: bold;">
+                                <field name="check_smtp" class="me-2"/>
+                                <span>Check SMTP</span>
+                            </div>
+                            <div class="o_description" style="color: #6c757d;">
+                                Enable this option to verify the existence of the SMTP server for the email domain.
+                            </div>
+                        </div>
+
+                        <!-- Right Pane (Optional for future use) -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <!-- Additional DNS settings can go here -->
+                        </div>
+                    </div>
+
+                    <!-- API Key Settings (Visible when API method is selected) -->
+                    <div class="row mt16 o_settings_container"
+                         attrs="{'invisible': [('email_verification_method', '!=', 'api')]}">
+                        <h3>API Key</h3>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <label for="api_key" string="Enter API Key"/>
+                            <div>
+                                <field name="api_key" placeholder="Enter API Key"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

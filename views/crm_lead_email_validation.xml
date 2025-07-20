@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_crm_lead_form_inherit_email_validation" model="ir.ui.view">
+            <field name="name">crm.lead.form.inherit.email.validation</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[@name='lead_info']//field[@name='email_from']" position="after">
+                    <div class="o_row" style="align-items: center;">
+                        <field name="is_email_valid" invisible="1"/>
+                        <field name="email_validation_message" invisible="1"/>
+                        <field name="show_validate_email_button" invisible="1"/>
+
+                        <span class="fa fa-check-circle text-success small"
+                              title="Valid Email"
+                              style="margin-left: 6px; font-size: 14px; vertical-align: middle;"
+                              attrs="{'invisible': [('is_email_valid', '=', False)]}"/>
+
+                        <!-- Error Icon -->
+                        <span class="fa fa-times-circle text-danger small"
+                              title="Invalid Email"
+                              style="margin-left: 6px; font-size: 14px; vertical-align: middle;"
+                              attrs="{'invisible': [('is_email_valid', '=', True)]}"/>
+
+                        <!-- Error Message + Validate Button -->
+                        <div class="text-danger small"
+                             style="margin-top: 2px; margin-left: 2px;"
+                             attrs="{'invisible': [('is_email_valid', '=', True)]}">
+
+                            <field name="email_validation_message" readonly="1"/>
+
+                            <button name="action_validate_email_smtp"
+                                    string="Validate Email"
+                                    type="object"
+                                    class="btn btn-success btn-sm"
+                                    style="margin-top: 4px;"
+                                    attrs="{'invisible': [('show_validate_email_button', '=', False)]}"/>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit CRM Lead Search View -->
+
+        <record id="crm_lead_search_inherit_email_validation" model="ir.ui.view">
+            <field name="name">crm.lead.search.inherit.email.validation</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <filter name="is_email_valid" string="Valid Email" domain="[('is_email_valid', '=', True)]"/>
+                    <filter name="is_email_invalid" string="Invalid Email" domain="[('is_email_valid', '=', False)]"/>
+                    <filter name="email_not_verified" string="Email Not Verified"
+                            domain="[('email_from', '!=', False), '|', ('email_validation_message', '=', False), ('email_validation_message', '=', 'Ready for SMTP Check')]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_crm_lead_validate_email" model="ir.actions.server">
+            <field name="name">Validate Email ID</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="binding_model_id" ref="crm.model_crm_lead"/>
+            <field name="state">code</field>
+            <field name="binding_type">action</field>
+            <field name="code">
+                action = env['crm.lead'].browse(env.context.get('active_ids')).action_bulk_validate_email()
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
